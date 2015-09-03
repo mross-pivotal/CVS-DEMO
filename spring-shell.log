@@ -1,0 +1,160 @@
+// XD Shell 1.1.0.RELEASE log opened at 2015-08-31 12:54:19
+stream create --name pytest --definition "time | shell --command='/Users/mross/workspace/cvs-demo/create.py' | log" --deploy
+stream destroy pytest
+stream create --name pytest --definition "time | shell --command='/Users/mross/workspace/cvs-demo/create.py'" --deploy
+stream destroy pytest
+stream create --name pytest --definition "time | shell --command='python/Users/mross/workspace/cvs-demo/create.py'" --deploy
+stream destroy pytest
+stream create --name pytest --definition "time | shell --command='python/Users/mross/workspace/cvs-demo/create.py'| log" --deploy
+stream destroy pytest
+stream create --name t --definition "time | log" --deploy
+stream destroy t
+stream create pytest --definition "time | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | log" --deploy
+stream destroy pytest
+stream create pytest --definition "time | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | log" --deploy
+stream destroy pytest
+stream create pytest --definition "time | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | log" --deploy
+stream undeploy pytest
+hadoop config fs --namenode hdfs://10.68/47.141:8020
+hadoop fs ls /
+hadoop config fs --namenode hdfs://10.68.47.141:8020
+hadoop fs ls /
+stream create cvs --definition "time | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+stream undeploy cvs
+// [failed] stream create cvs --definition "time | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+stream deploy cvs
+hadoop fs ls /
+hadoop fs ls /xd
+stream undeploy cvs
+hadoop fs ls /xd/cvs
+hadoop fs tail /xd/cvs/cvs-0.txt
+// [failed] stream create cvs --definition "file | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+stream destroy cvs
+stream create cvs --definition "file | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+stream undeploy cvs
+// [failed] stream create cvs --definition "file | splitter --expression=payload.split('\n') | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+stream destroy cvs
+// [failed] stream create cvs --definition "file | splitter --expression=payload.split('\n') | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+// [failed] stream create cvs --definition "file | splitter --expression=payload.split('\n') > shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+stream create cvs --definition "file | splitter --expression=payload.split('\\n') | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+stream destroy cvs
+stream create cvs --definition "file | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+stream destroy cvs
+stream create cvs --definition "file | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+hadoop fs ls /
+hadoop fs ls /xd
+hadoop fs ls /xd/cvs
+hadoop fs ls /xd/cvs
+stream undeploy cvs
+hadoop fs ls /xd/cvs
+stream create c --definition "file | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+hadoop fs ls /xd/
+stream undeploy c
+hadoop fs ls /xd/
+hadoop fs ls /xd/c
+stream create vs --definition "time | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs" --deploy
+hadoop fs ls /xd
+stream destroy vs
+hadoop fs ls /xd/vs
+hadoop fs ls /xd/vs/vs-0.txt
+hadoop fs tail /xd/vs/vs-0.txt
+hadoop fs rm /xd/vs/
+hadoop fs rm /xd/vs/
+stream create v --definition "file | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs --rollover=1m" --deploy
+hadoop fs rm /xd/v
+hadoop fs ls /xd/
+hadoop fs ls /xd/
+stream undeploy v
+hadoop fs ls /xd/v
+hadoop fs cat  /xd/v/v-0.txt
+stream deploy v
+hadoop fs ls /xd/v
+stream undeploy v
+hadoop fs cat  /xd/v/v-1.txt
+hadoop fs cat  /xd/v/v-0.txt
+stream create myv  --definition "file  | hdfs --rollover=1m" --deploy
+stream undeploy myv
+// [failed] stream create myv  --definition "file  | log" --deploy
+stream create my  --definition "file  | log" --deploy
+// [failed] stream create my  --definition "file --outputType=text/plain | log" --deploy
+stream destroy my
+stream create my  --definition "file --outputType=text/plain | log" --deploy
+stream create b --definition "file --outputType=text/plain | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs --rollover=1m" --deploy
+hadoop fs ls /
+hadoop fs ls /xd
+hadoop fs ls /xd
+hadoop fs ls /xd
+hadoop fs ls /xd/b
+stream undeploy b
+hadoop fs ls /xd/b
+hadoop fs tail /xd/b/b-0.txt
+hadoop fs cat /xd/b/b-0.txt
+stream deploy b
+stream create cvsStream --definition "file --outputType=text/plain | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs --rollover=1m --directory=/xd/cvsData --fileName=userData" --deploy
+stream destroy cvsStream
+stream create cvsStream --definition "file --outputType=text/plain | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs --rollover=1m --directory=/xd/cvsData --fileName=userData" --deploy
+hadoop fs ls /xd
+hadoop fs ls /xd
+hadoop fs ls /xd
+hadoop fs ls /xd
+hadoop fs ls /
+hadoop fs ls /xd
+hadoop fs ls /xd
+hadoop fs ls /
+hadoop fs ls /tmp
+hadoop fs ls /
+hadoop fs ls /xd
+stream destroy cvsStream
+stream create cvsStream --definition "file --outputType=text/plain | shell --command='python /Users/mross/workspace/cvs-demo/echo.py' | hdfs --rollover=1m --directory=/xd/cvsData --fileName=userData" --deploy
+hadoop fs ls /xd
+hadoop fs ls /xd
+hadoop fs ls /xd
+hadoop fs ls /
+hadoop fs ls /xd
+hadoop fs ls /cvsData
+hadoop fs ls /xd/cvsData
+// [failed] stream undeploy cvsData
+stream undeploy cvsStream
+hadoop fs ls /xd/cvsData
+hadoop fs cat /xd/cvsData/userData-0.txt
+stream list
+stream deploy cvsStream
+stream undeploy cvsStream
+hadoop config fs --namenode hdfs://10.68.47.141:8020
+hadoop fs ls /
+stream deploy cvsStream
+stream undeploy cvsStream
+stream deploy cvsStream
+stream undeploy cvsStream
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-09-01 10:08:03
+// XD Shell 1.1.0.RELEASE log opened at 2015-09-01 10:08:30
+hadoop config fs --namenode hdfs://10.68.47.141:8020
+hadoop fs ls /xd/str
+stream list my
+stream undeploy my
+stream create local --definition "time | hdfs" --deploy
+hadoop fs ls /xd
+stream destroy local
+stream deploy cvsStream
+stream create cvsTap --definition "tap:stream:cvsStream > log " --deploy
+stream undeploy cvsStream
+hadoop fs ls /xd/cvsData
+hadoop fs tail /xd/cvsData/userData-1.txt
+hadoop fs ls /xd/userData
+hadoop fs ls 
+hadoop fs ls / 
+hadoop fs ls /xd
+hadoop fs ls /xd/cvsData
+hadoop fs rm /xd/cvsData/userData-0.txt
+hadoop fs rm /xd/cvsData/userData-1.txt
+hadoop fs ls /xd/cvsData
+stream create cvsStr --definition "time  | hdfs --rollover=1m --directory=/xd/cvsData --fileName=userData" --deploy
+hadoop fs ls /xd
+hadoop fs ls /xd
+stream undeploy cvsStr
+hadoop fs ls /xd/cvsData
+hadoop fs ls /xd/cvsData/userData-0.txt
+hadoop fs tail  /xd/cvsData/userData-0.txt
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-09-02 16:06:22
